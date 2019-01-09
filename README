@@ -3,3 +3,6 @@ Amazon Cloud Computing Services used:
 	Simple Queue Service (SQS)
 	Simple Storage Solution (S3)
 This was an assignment for my cloud computing class. The requirement was to write two applications, client-side and server-side, linked by an “inbox” SQS instance and an “outbox” SQS instance. The  client side application sends and receives strings of comma delimited integers to the SQS API. The SQS API passes the messages along to the EC2 instance. The EC2 Instance runs an application which accepts the message,  sorts those integers smallest to largest, makes a record of the transaction in the S3 bucket, then returns the sorted integers via the “outbox” queue. The sorted integers are then printed in the console on the client side. Java code templates provided by Amazon were built upon to consume the various APIs used in this project.
+
+ClientInputApp.java - Client-side application that receives user input, sends the message to the inbox queue, waits for the message from the outbox queue, then prints the resulting list of sorted integers. 
+Ec2App.java - Server-side application that receives messages from the inbox queue, sorts the integers, and sends messages back to the outbox queue.
